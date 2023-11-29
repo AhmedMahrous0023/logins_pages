@@ -2,13 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:login_pages/components/button_of_page.dart';
 import 'package:login_pages/components/blue_container.dart';
 import 'package:login_pages/components/white_container.dart';
+import 'package:login_pages/screens/sign_in_screen.dart';
+import 'package:login_pages/screens/sign_up_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  goSigninScreen (){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignInScreen()));
+  }
+
+  goSignupScreen(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignUpScreen()));
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
         backgroundColor: Colors.blue[50],
         body: Stack(
           children: [
@@ -24,7 +41,7 @@ class LoginScreen extends StatelessWidget {
               ),),
             Align(
               alignment: Alignment.center,
-              child: WhiteContainer(height: 0.4,
+              child: WhiteContainer(height: 0.4,width: 0.8,
                child:Column(children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 30, bottom: 10),
@@ -44,11 +61,11 @@ class LoginScreen extends StatelessWidget {
                         ),
                          Padding(
                            padding: const EdgeInsets.only(top: 20),
-                           child: ButtonOfPage(text: "Sign In", onPressed: (){},backgroundColor: Colors.blue,foregroundColor:Colors.white ,),
+                           child: ButtonOfPage(text: "Sign In", onPressed: goSigninScreen,backgroundColor: Colors.blue,foregroundColor:Colors.white ,),
                          ),
                           Padding(
                            padding: const EdgeInsets.only(top: 20),
-                           child: ButtonOfPage(text: "Sign In", onPressed: (){},backgroundColor: Colors.white,foregroundColor:Colors.blue ,),
+                           child: ButtonOfPage(text: "Sign Up", onPressed: goSignupScreen,backgroundColor: Colors.white,foregroundColor:Colors.blue ,),
                          ),
                          SizedBox(
                   height: MediaQuery.sizeOf(context).height * .05,
@@ -137,51 +154,5 @@ class LoginScreen extends StatelessWidget {
         ),
         );
         }
-        }
-          //   TheStackOfPage(
-          //       heightOfFirstContainer: 0.5,
-          //       imageHeight: 0.01,
-          //       imageWidth: 0.25,
-          //       textapp: "APP ICON",
-          //       container: Container(
-          //           height: MediaQuery.sizeOf(context).height * 0.4,
-          //           width: MediaQuery.sizeOf(context).width * .8,
-          //           decoration: BoxDecoration(
-          //               color: Colors.white,
-          //               borderRadius: BorderRadius.only(
-          //                   bottomLeft: Radius.circular(30),
-          //                   bottomRight: Radius.circular(30),
-          //                   topLeft: Radius.circular(30),
-          //                   topRight: Radius.circular(30))),
-          //           child: Column(children: [
-          //             Padding(
-          //               padding: const EdgeInsets.only(top: 30, bottom: 10),
-          //               child: Text(
-          //                 "Welcome to App Name",
-          //                 style: TextStyle(
-          //                   fontWeight: FontWeight.bold,
-          //                   fontSize: 17,
-          //                 ),
-          //               ),
-          //             ),
-          //             Text(
-          //               "Discover Amazing Thing Near Around You",
-          //               style: TextStyle(
-          //                 fontSize: 15,
-          //               ),
-          //             ),
-          //           ])))
-          // ],
-        // )
-        // );
-//   }
-// }
-
-
-
-// MediaQuery.sizeOf(context).height * 0.5,
-// imagesize  MediaQuery.sizeOf(context).width*.25,
-// imageHeight  MediaQuery.sizeOf(context).height*.01
-
-// container two     height: MediaQuery.sizeOf(context).height * 0.4,
-//               width: MediaQuery.sizeOf(context).width * .8,
+}
+          

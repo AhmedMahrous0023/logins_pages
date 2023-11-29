@@ -3,32 +3,41 @@ import 'package:login_pages/components/blue_container.dart';
 import 'package:login_pages/components/button_of_page.dart';
 import 'package:login_pages/components/text_field_input.dart';
 import 'package:login_pages/components/white_container.dart';
-import 'package:login_pages/screens/recover_your_password_screen.dart';
+import 'package:login_pages/screens/enter_otp_screen.dart';
 
-class FindYourAccountScreen extends StatefulWidget {
-  const FindYourAccountScreen({super.key});
+class RecoverYourPasswordScreen extends StatefulWidget {
+  const RecoverYourPasswordScreen({super.key});
 
   @override
-  State<FindYourAccountScreen> createState() => _FindYourAccountScreenState();
+  State<RecoverYourPasswordScreen> createState() => _RecoverYourPasswordScreenState();
 }
 
-class _FindYourAccountScreenState extends State<FindYourAccountScreen> {
-  TextEditingController _emailController =TextEditingController();  
+class _RecoverYourPasswordScreenState extends State<RecoverYourPasswordScreen> {
+  TextEditingController _numberController =TextEditingController();
+    TextEditingController _emailController =TextEditingController();
 
-  goRecoverPasswordPage (){
-           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RecoverYourPasswordScreen()));
+    goEnterOtpPage(){
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EnterOtpScreen()));
 
+    }
+    bool value =false ;
+
+    checkBoxChanged (value){
+      setState(() {
+        value = !value ;
+      });
+    }
+
+    @override
+  void dispose() {
+_emailController ;
+_numberController ;
+    super.dispose();
   }
 
   @override
-  void dispose() {
-_emailController ;
-    super.dispose();
-  } 
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         elevation: 0,),
       backgroundColor: Colors.blue[50],
@@ -50,7 +59,7 @@ _emailController ;
                       Padding(
                         padding: const EdgeInsets.only(left: 15, bottom: 5),
                         child: Text(
-                          "Find Your account",
+                          "Recover Your Password",
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -60,7 +69,7 @@ _emailController ;
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "Please enter your email address of phone number\n to search for your account",
+                          "Select credentials which should we use to\n recover your password",
                           style: TextStyle(color: Colors.white),
                         ),
                       )
@@ -71,20 +80,26 @@ _emailController ;
           Align(
             alignment: Alignment.center,
             child: WhiteContainer(
-              width: .8,
-              height: 0.23,
+              width: 0.8,
+              height: 0.29,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TextFieldInput(obscureText: false,
+                  TextFieldInput(obscureText: value,
+                      controller: _numberController,
+                      hintText: " *** *** 6124",
+                      prefixIcon: Icon(Icons.mobile_friendly),
+                      suffix: Checkbox(value: value, onChanged: checkBoxChanged),
+                      ),
+                      TextFieldInput(obscureText: false,
                       controller: _emailController,
-                      hintText: "Email",
+                      hintText: " ***** 83@email.com",
                       prefixIcon: Icon(Icons.email)),
                   Padding(
                     padding: const EdgeInsets.only(top: 25,),
                     child: ButtonOfPage(
-                      text: "Search",
-                      onPressed: goRecoverPasswordPage,
+                      text: "Recover Password",
+                      onPressed: goEnterOtpPage,
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
                     ),

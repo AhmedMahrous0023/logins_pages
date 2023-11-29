@@ -21,10 +21,22 @@ class _LoginWithNumberState extends State<LoginWithNumber> {
     TextEditingController _controller5 =TextEditingController();   
     TextEditingController _controller6 =TextEditingController();   
  
-
+@override
+  void dispose() {
+_controller1 ;
+_controller2 ;
+_controller3;
+_controller4 ;
+_controller5 ;
+_controller6 ;
+_mobileNumberController ;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,),
       backgroundColor: Colors.blue[50],
       body: Stack(
         children: [
@@ -66,12 +78,12 @@ class _LoginWithNumberState extends State<LoginWithNumber> {
             left: 50,
             child: Align(
               alignment: Alignment.center,
-              child: WhiteContainer(
+              child: WhiteContainer(width: 0.8,
                 height: 0.33,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    TextFieldInput(
+                    TextFieldInput(obscureText: false,
                         controller: _mobileNumberController,
                         hintText: "Enter your mobile number",
                         prefixIcon: Icon(Icons.mobile_friendly)),

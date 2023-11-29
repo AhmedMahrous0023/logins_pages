@@ -4,7 +4,9 @@ class TextFieldInput extends StatelessWidget {
   final TextEditingController controller ;
    final String hintText ;
    final Widget prefixIcon ;
-  const TextFieldInput({super.key,required this.controller,required this.hintText,required this.prefixIcon});
+   final Widget? suffix ;
+   final bool obscureText ;
+  const TextFieldInput({super.key,required this.controller,required this.hintText,required this.prefixIcon,this.suffix,required this.obscureText});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,12 @@ class TextFieldInput extends StatelessWidget {
             fillColor: Colors.grey[200],
             filled: true,
             prefixIcon: prefixIcon,
+            suffix: suffix,
             hintText: hintText,
             prefixIconColor: Colors.grey[600],
             hintStyle: TextStyle(color: Colors.grey,fontSize: 15)
           ),
+          obscureText: obscureText,
         ),
       ),
     );

@@ -13,9 +13,17 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _fullName = TextEditingController();
+
+  @override
+  void dispose() {
+_fullName ;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,),
       backgroundColor: Colors.blue[50],
       body: Stack(
         children: [
@@ -50,21 +58,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Align(
               alignment: Alignment.center,
               child: WhiteContainer(
+                width: 0.8,
                 height: 0.49,
                 child: Column(
                   children: [
-                    TextFieldInput(
+                    TextFieldInput(obscureText: false,
                         controller: _fullName,
                         hintText: "Full Name",
                         prefixIcon: Icon(Icons.person)),
-                    TextFieldInput(
+                    TextFieldInput(obscureText: false,
                         controller: _fullName,
                         hintText: "Email",
                         prefixIcon: Icon(Icons.email_sharp)),
-                    TextFieldInput(
+                    TextFieldInput(obscureText: true,
                         controller: _fullName,
                         hintText: "Password",
-                        prefixIcon: Icon(Icons.password_outlined)),
+                        prefixIcon: Icon(Icons.lock)),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: ButtonOfPage(

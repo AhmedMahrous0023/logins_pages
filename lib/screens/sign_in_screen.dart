@@ -3,6 +3,8 @@ import 'package:login_pages/components/blue_container.dart';
 import 'package:login_pages/components/button_of_page.dart';
 import 'package:login_pages/components/text_field_input.dart';
 import 'package:login_pages/components/white_container.dart';
+import 'package:login_pages/screens/find_your_account_screen.dart';
+import 'package:login_pages/screens/login_with_number_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -15,9 +17,27 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _emailController =TextEditingController();
     TextEditingController _passwordController =TextEditingController();
 
+    goLoginWithNumberPage (){
+       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginWithNumber()));
+    }
+
+    goFindYourAccountPage (){
+             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FindYourAccountScreen()));
+
+    }
+
+
+@override
+  void dispose() {
+_emailController ;
+_passwordController ;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        elevation: 0,),
       backgroundColor: Colors.blue[50],
       body: Stack(
         children: [
@@ -52,18 +72,19 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Align(
               alignment: Alignment.center,
               child: WhiteContainer(
+                width: 0.8,
                 height: 0.35,
                 child: Column(
                   children: [
                   
-                    TextFieldInput(
+                    TextFieldInput(obscureText: false,
                         controller: _emailController,
                         hintText: "Email",
                         prefixIcon: Icon(Icons.email_sharp)),
-                    TextFieldInput(
+                    TextFieldInput(obscureText: true,
                         controller: _passwordController,
                         hintText: "Password",
-                        prefixIcon: Icon(Icons.password_outlined)),
+                        prefixIcon: Icon(Icons.lock)),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: ButtonOfPage(
@@ -77,7 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Padding(
                       padding: const EdgeInsets.only(left: 25, right: 5, top: 35),
                       child: InkWell(
-                        onTap: (){},
+                        onTap: goFindYourAccountPage,
                         child: Text(
                           "Forgot Password",
                           style: TextStyle(fontSize: 13,color: Colors.blue),
@@ -158,13 +179,16 @@ class _SignInScreenState extends State<SignInScreen> {
                           width: 20,
                           height: 20,
                         )),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width * .1,
-                      height: 20,
-                      child: Image.asset(
-                        "assets/images/mobile.png",
-                        width: 20,
+                    InkWell(
+                      onTap: goLoginWithNumberPage,
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * .1,
                         height: 20,
+                        child: Image.asset(
+                          "assets/images/mobile.png",
+                          width: 20,
+                          height: 20,
+                        ),
                       ),
                     ),
                   ],

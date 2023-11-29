@@ -1,9 +1,18 @@
 
 import 'package:flutter/material.dart';
-class SplashScreen extends StatelessWidget {
+import 'package:login_pages/screens/login_screen.dart';
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-    
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  startScreens (){
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => LoginScreen()));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +31,7 @@ class SplashScreen extends StatelessWidget {
               backgroundColor:MaterialStatePropertyAll(Colors.indigo),
               foregroundColor: MaterialStatePropertyAll(Colors.white)
             ),
-            onPressed: (){}, child: Text("let's Start"),
+            onPressed: startScreens, child: Text("let's Start"),
             ),
             ),
         ),
