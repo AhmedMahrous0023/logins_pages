@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:login_pages/screens/find_your_account_screen.dart';
 import 'package:login_pages/screens/login_screen.dart';
+import 'package:login_pages/screens/login_with_number_screen.dart';
+import 'package:login_pages/screens/sign_in_screen.dart';
+import 'package:login_pages/screens/sign_up_screen.dart';
 import 'package:login_pages/screens/splash_screen.dart';
 
 void main() {
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: FindYourAccountScreen(),
     );
   }
 }
